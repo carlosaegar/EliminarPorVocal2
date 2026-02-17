@@ -1,13 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+public class EliminarPorVocal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+
+        System.out.println("Introduce palabras: ");
+        String entrada = sc.nextLine();
+
+
+        List<String> palabras = new ArrayList<>(Arrays.asList(entrada.split("\\s+")));
+
+
+        System.out.print("Introduce la vocal para filtrar las palabras (separalas con espacios):  ");
+        String vocal = sc.nextLine().toLowerCase();
+
+
+        // con removeIf se elimina segun lo que pidamos
+        palabras.removeIf(p -> p.toLowerCase().contains(vocal));
+
+        System.out.println("ista filtrada (sin palabras que contienen '" + vocal + "'):");
+        if (palabras.isEmpty()) {
+            System.out.println("No quedó ninguna palabra en la lista.");
+        } else {
+            System.out.println(palabras);
+        }
+
+        sc.close();
+    }
 }
